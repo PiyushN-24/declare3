@@ -45,14 +45,14 @@ pipeline {
     }
     post {
         success {
-            emailext (
+            emailemail (
                 to: 'awspiyush189@gmail.com', // Email recipient(s)
                 subject: "Build Successful: ${currentBuild.fullDisplayName}", // Email subject
                 body: "The build ${currentBuild.fullDisplayName} completed successfully. You can access the artifacts at ${env.BUILD_URL}", // Email body
             )
         }
         failure {
-            emailext (
+            emailemail (
                 to: 'awspiyush189@gmail.com',
                 subject: "Build Failed: ${currentBuild.fullDisplayName}",
                 body: "The build ${currentBuild.fullDisplayName} failed. Please check the Jenkins logs for more details: ${env.BUILD_URL}",
