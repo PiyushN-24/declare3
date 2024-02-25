@@ -42,8 +42,10 @@ pipeline {
                 sh 'cp target/declare3.war /home/therecker/DevOps/Maven/apache-tomcat-9.0.85/webapps/'
             }
         }
+	stage('E-mail Notification') {
+	    steps {
+		emailext body: 'The build ${currentBuild.fullDisplayName} failed. Please check the Jenkins logs for more details: ${env.BUILD_URL}', subject: 'Build Failed: ${currentBuild.fullDisplayName}', to: 'awspiyush189@gmail.com'
+	    }	
+	}
     }
-    post {
-	emailext body: 'The build ${currentBuild.fullDisplayName} failed. Please check the Jenkins logs for more details: ${env.BUILD_URL}', subject: 'Build Failed: ${currentBuild.fullDisplayName}', to: 'awspiyush189@gmail.com'
-    } 
 }
